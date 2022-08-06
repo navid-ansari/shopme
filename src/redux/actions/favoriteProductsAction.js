@@ -8,7 +8,6 @@ export const toggleFavoriteProduct = (products) => {
 };
 
 export const addSelectedFavoriteProduct = (product) => {
- console.log(product);
  return {
   type: ActionTypes.ADD_SELECTED_FAVOURITE_PRODUCT,
   payload: product,

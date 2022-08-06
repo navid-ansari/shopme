@@ -7,7 +7,7 @@ const Stars = (props) => {
  const stars = Math.ceil(props.rating);
 
  useEffect(() => {
-  console.log("Start Use Effect");
+  //console.log("Start Use Effect");
   const starArray = (starCount) => {
    const array = [];
    for (let i = 0; i < starCount; i++) {
@@ -26,7 +26,7 @@ const Stars = (props) => {
   })();*/
  }, []);
 
- console.log(props.rating);
+ //console.log(props.rating);
  const starElem = starCount.map((star) => <Star key={star} />);
 
  return <>{starElem}</>;
