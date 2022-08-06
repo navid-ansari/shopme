@@ -21,9 +21,7 @@ const Favorite = (props) => {
     </div>
     <div className="product-rating">
      <span className="rating">Rating: </span>
-     <span className="rating-stars">
-      <Stars rating={rate} />
-     </span>
+     <span className="rating-stars">{/* <Stars rating={rate} /> */}</span>
     </div>
     <div className="product-review">
      <span className="reviews">Reviews: </span>
