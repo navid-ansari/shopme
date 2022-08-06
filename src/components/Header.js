@@ -10,7 +10,6 @@ const Header = (props) => {
  const [cartItemCount, setCartItemCount] = useState(0);
 
  store.subscribe(() => {
-  console.log("store changed ", store.getState());
   setFavoriteItemCount((prevCount) => store.getState().favorites.length);
   setCartItemCount((prevCount) => store.getState().cart.length);
  });
