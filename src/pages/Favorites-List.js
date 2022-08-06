@@ -8,7 +8,6 @@ import Favorite from "../components/Favorite";
 
 const Favorites = () => {
  const favorites = useSelector((state) => state.favorites);
- //console.log(favorites);
  const favroriteElem = favorites.map((favorite) => (
   <Favorite key={favorite.id} favorite={favorite} />
  ));
