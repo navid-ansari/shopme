@@ -1,7 +1,7 @@
 import { ActionTypes } from "../constants/action-types";
 
 const defaultCart = (cartItems, payload) => {
- return [...cartItems, payload];
+ return [payload, ...cartItems];
 };
 
 const toggleCart = (cartItems, payload) => {
@@ -9,7 +9,7 @@ const toggleCart = (cartItems, payload) => {
  if (idx !== -1) {
   return cartItems.filter((product) => product.id !== payload.id);
  } else {
-  return [...cartItems, payload];
+  return [payload, ...cartItems];
  }
 };
 
