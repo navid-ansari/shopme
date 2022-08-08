@@ -8,7 +8,7 @@ const Cart = (props) => {
   props.product;
  const { rate, count } = rating || {};
  return (
-  <div className="productdetail-page">
+  <div className="product">
    <div className="left-column">
     <img src={image} alt="" />
    </div>

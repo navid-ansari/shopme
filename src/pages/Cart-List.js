@@ -15,7 +15,7 @@ const CartList = () => {
 
  return (
   <div className="cart-page">
-   <div className="gallery">{cartElem}</div>
+   <div className="container">{cartElem}</div>
   </div>
  );
 };

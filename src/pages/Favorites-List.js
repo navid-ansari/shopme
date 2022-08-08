@@ -12,8 +12,8 @@ const Favorites = () => {
   <Favorite key={favorite.id} favorite={favorite} />
  ));
  return (
-  <div className="favorites">
-   <div className="gallery">{favroriteElem}</div>
+  <div className="favorites-page">
+   <div className="container">{favroriteElem}</div>
   </div>
  );
 };

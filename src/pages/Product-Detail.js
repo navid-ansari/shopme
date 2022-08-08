@@ -43,34 +43,66 @@ const ProductDetail = () => {
  }, [productId]);
 
  return (
-  <div className="gallery">
-   <div className="productdetail-page">
-    <div className="left-column">
-     <img src={image} alt="" />
-    </div>
-    <div className="right-column">
-     <h2 className="product-title">{title}</h2>
-     <div className="product-description">
-      <span className="decription">Description: </span>
-      <span className="description-text">{description}</span>
+  <div className="productdetail-page">
+   <div className="container">
+    <div className="product">
+     <div className="left-column">
+      <img src={image} alt="" />
      </div>
-     <div className="product-rating">
-      <span className="rating">Rating: </span>
-      <span className="rating-stars">
-       <Stars rating={rate} />
-      </span>
-     </div>
-     <div className="product-review">
-      <span className="reviews">Reviews: </span>
-      <span className="total-reviews">{count} reviews</span>
-     </div>
-     <div className="product-price">
-      <span className="price">Price: </span>
-      <span className="total-price">&#x20b9; {price}</span>
+     <div className="right-column">
+      <h2 className="product-title">{title}</h2>
+      <div className="product-description">
+       <span className="decription">Description: </span>
+       <span className="description-text">{description}</span>
+      </div>
+      <div className="product-rating">
+       <span className="rating">Rating: </span>
+       <span className="rating-stars">
+        <Stars rating={rate} />
+       </span>
+      </div>
+      <div className="product-review">
+       <span className="reviews">Reviews: </span>
+       <span className="total-reviews">{count} reviews</span>
+      </div>
+      <div className="product-price">
+       <span className="price">Price: </span>
+       <span className="total-price">&#x20b9; {price}</span>
+      </div>
      </div>
     </div>
    </div>
   </div>
+  /*<div className="productdetail-page">
+   <div className="container">
+    <div className="single-product-detail">
+     <div className="left-column">
+      <img src={image} alt="" />
+     </div>
+     <div className="right-column">
+      <h2 className="product-title">{title}</h2>
+      <div className="product-description">
+       <span className="decription">Description: </span>
+       <span className="description-text">{description}</span>
+      </div>
+      <div className="product-rating">
+       <span className="rating">Rating: </span>
+       <span className="rating-stars">
+        <Stars rating={rate} />
+       </span>
+      </div>
+      <div className="product-review">
+       <span className="reviews">Reviews: </span>
+       <span className="total-reviews">{count} reviews</span>
+      </div>
+      <div className="product-price">
+       <span className="price">Price: </span>
+       <span className="total-price">&#x20b9; {price}</span>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>*/
  );
 };
 
