@@ -1,14 +1,14 @@
 import { combineReducers } from "redux";
 
 import { productReducer, selectedProductReducer } from "./productReducer";
-import { toggleFavoriteProductReducer } from "./favoriteProductReducer";
+import { toggleFavoriteReducer } from "./favoriteReducer";
 
 import { cartReducer } from "./cartReducer";
 
 const reducers = combineReducers({
  allProducts: productReducer,
  product: selectedProductReducer,
- favorites: toggleFavoriteProductReducer,
+ favorites: toggleFavoriteReducer,
  cart: cartReducer,
 });
 
