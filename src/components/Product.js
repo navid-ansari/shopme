@@ -11,18 +11,57 @@ import { toggleFavoriteProduct } from "../redux/actions/favoriteProductsAction";
 import { cartAction } from "../redux/actions/cartAction";
 
 const Product = (props) => {
- const { category, description, id, image, price, rating, title } =
-  props.product;
+ const {
+  category,
+  description,
+  id,
+  image,
+  price,
+  rating,
+  title,
+  isFavorite,
+  isAddedToCart,
+  toggleFavorite,
+  toggleCart,
+ } = props.product;
  const dispatch = useDispatch();
+
+ const getFavoriteIcon = () => {
+  if (isFavorite) {
+   return (
+    <i
+     className="ri-heart-fill ri-fw ri-2x"
+     onClick={() => props.toggleFavorite(props.product)}
+    ></i>
+   );
+  } else {
+   return (
+    <i
+     className="ri-heart-line ri-fw ri-2x"
+     onClick={() => props.toggleFavorite(props.product)}
+    ></i>
+   );
+  }
+ };
+
+ const getButtonText = () => {
+  if (isAddedToCart) {
+   return "Remove From Cart";
+  } else {
+   return "Add To Cart";
+  }
+ };
 
  return (
   <div className="content">
-   <div
+   {/* onClick={() => dispatch(toggleFavoriteProduct(props.product))} */}
+   {/* <div
     className="favorite-icon"
-    onClick={() => dispatch(toggleFavoriteProduct(props.product))}
+    onClick={() => props.toggleFavorite(props.product)}
    >
     <i className="ri-heart-line ri-fw ri-2x"></i>
-   </div>
+   </div> */}
+   <div className="favorite-icon">{getFavoriteIcon()}</div>
    <Link to={`/product/${id}`}>
     <img src={image} style={{ height: "200px" }} alt="" />
     <h3>{title}</h3>
@@ -31,29 +70,12 @@ const Product = (props) => {
      <span>&#x20b9;</span>
      {price}
     </h6>
-    {/* <ul>
-     <li>
-      <i class="fa fa-star" aria-hidden="true"></i>
-     </li>
-     <li>
-      <i class="fa fa-star" aria-hidden="true"></i>
-     </li>
-     <li>
-      <i class="fa fa-star" aria-hidden="true"></i>
-     </li>
-     <li>
-      <i class="fa fa-star" aria-hidden="true"></i>
-     </li>
-     <li>
-      <i class="fa fa-star" aria-hidden="true"></i>
-     </li>
-    </ul> */}
    </Link>
    <button
-    className="buy-1"
-    onClick={() => dispatch(cartAction(props.product))}
+    className={isAddedToCart ? "remove-from-cart" : "add-to-cart"}
+    onClick={() => props.toggleCart(props.product)}
    >
-    Add To Cart
+    {getButtonText()}
    </button>
   </div>
  );
