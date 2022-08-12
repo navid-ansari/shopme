@@ -5,7 +5,7 @@ body {
  box-sizing: border-box;
 }
 .header {
- background-color: #2183a2;
+ background-color: #eb3b65;
  margin: 0 auto;
  display: -webkit-flex;
  display: flex;
@@ -20,7 +20,7 @@ body {
 }
 
 .logo i {
- color: #f7f245;
+ /* color: #f7f245; */
  cursor: pointer;
  font-size: 3em;
 }
@@ -34,7 +34,7 @@ body {
 }
 
 .brand-logo {
- color: #c2db3c;
+ color: #ffffff;
  cursor: pointer;
 }
 .brand-name {
@@ -58,6 +58,10 @@ body {
  top: -8px;
  right: -8px;
  font-size: 10px;
+}
+.favorite-icon {
+ /* color: #ff6d86; */
+ color: #535766;
 }
 h3 {
  text-align: center;
@@ -164,9 +168,13 @@ button {
  outline: none;
  cursor: pointer;
  margin-top: 5px;
- border-bottom-right-radius: 10px;
- border-bottom-left-radius: 10px;
  font-size: 1em;
+}
+.add-to-cart {
+ background-color: #ff3e6c;
+}
+.remove-from-cart {
+ background-color: #535766;
 }
 .buy-1 {
  background-color: #2183a2;

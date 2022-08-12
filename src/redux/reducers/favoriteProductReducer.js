@@ -23,3 +23,5 @@ export const toggleFavoriteProductReducer = (state = [], { type, payload }) => {
    return state;
  }
 };
+
+export const toggleFavoriteReducer = (state = [], { type, payload }) => {};
