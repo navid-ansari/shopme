@@ -1,7 +1,7 @@
 import { ActionTypes } from "../constants/action-types";
 
 const defaultItem = (favorites, payload) => {
- return [...favorites, payload];
+ return [payload, ...favorites];
 };
 
 const findItem = (favorites, payload) => {
@@ -9,7 +9,7 @@ const findItem = (favorites, payload) => {
  if (idx !== -1) {
   return favorites.filter((favorite) => favorite.id !== payload.id);
  } else {
-  return [...favorites, payload];
+  return [payload, ...favorites];
  }
 };
 

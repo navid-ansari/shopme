@@ -93,7 +93,9 @@ const ProductList = () => {
 
  return (
   <div className="productlist-page">
-   <div className="gallery">{productsElem}</div>
+   <div className="container">
+    <div className="gallery">{productsElem}</div>
+   </div>
   </div>
  );
 };
