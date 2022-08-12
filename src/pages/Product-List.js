@@ -44,10 +44,6 @@ const ProductList = () => {
   if (findProduct) {
    const modifiedProducts = products.map((product) => {
     if (product.id === findProduct.id) {
-     console.log({
-      ...product,
-      isAddedToCart: !findProduct.isAddedToCart,
-     });
      return {
       ...product,
       isAddedToCart: !findProduct.isAddedToCart,
