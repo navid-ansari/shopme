@@ -12,6 +12,7 @@ import ProductDetail from "./pages/Product-Detail";
 import Favorites from "./pages/Favorites-List";
 import CartList from "./pages/Cart-List";
 import NotFound from "./components/NotFound";
+import Footer from "./components/Footer";
 
 function App() {
  return (
@@ -27,6 +28,7 @@ function App() {
       404 Not Found
      </Route>
     </Routes>
+    {/* <Footer /> */}
    </Router>
   </div>
  );
