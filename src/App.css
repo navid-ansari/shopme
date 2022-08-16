@@ -1,5 +1,5 @@
 @import url("./reset.css");
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
 * {
  box-sizing: border-box;
 }
@@ -21,6 +21,7 @@ body {
  width: 100%;
  z-index: 1;
  top: 0;
+ box-shadow: 0 3px 25px 5px #ebeaea;
 }
 .logo {
  margin-right: auto;
@@ -31,10 +32,14 @@ body {
 .logo i {
  /* color: #f7f245; */
  cursor: pointer;
- font-size: 3em;
+ font-size: 2.5em;
 }
 .logo .brand-name {
  color: white;
+ text-transform: uppercase;
+ font-weight: 700;
+ font-size: 1em;
+ text-shadow: 3px 3px 1px rgb(0 0 0 / 56%);
 }
 
 .checkout-section .favorite a,
@@ -45,6 +50,8 @@ body {
 .brand-logo {
  color: #ffffff;
  cursor: pointer;
+ cursor: pointer;
+ font-size: 2.5em;
 }
 .brand-name {
  font-family: "Poppins", sans-serif;
@@ -132,7 +139,7 @@ img {
  margin: 0 auto;
  display: block;
 }
-p {
+.content p {
  text-align: center;
  color: #565858;
  padding: 5px 8px !important;
@@ -261,109 +268,38 @@ button {
 }
 .productdetail-page {
  margin-top: 80px;
- /*margin-bottom: 15px;
- display: flex;
- border-radius: 10px;
- border-top-right-radius: 10px;
- border-bottom-right-radius: 10px;
- box-shadow: 0 0 10px rgb(0 0 0 / 10%);
- transition: 0.4s;
- padding: 15px;*/
 }
-/*.productdetail-page > div {
- margin: 0 15px 0 15px;
-}
-.productdetail-page .product-title {
- font-size: 1.5em;
- font-weight: 500;
- margin-bottom: 10px;
-}
-.productdetail-page .product-description,
-.productdetail-page .product-rating,
-.productdetail-page .product-review {
- margin-bottom: 5px;
- line-height: 1.1;
-}*/
+
 .description-text {
  line-break: anywhere;
 }
-/* Small devices (portrait phones, 320px and up) */
-/*@media (min-width: 360px) {
- .header {
-  padding: 5px 10px;
- }
- .container {
-  max-width: 330px;
-  margin: 0 auto;
- }
- .content {
-  margin: 0 7.5px 15px 7.5px;
-  padding: 10px;
- }
- .favorite-icon {
-  top: 10px;
-  right: 10px;
- }
- .product {
-  display: block; 
- }
- .productdetail-page {
-  display: block;
- }
- .productdetail-page .product-title {
-  margin-top: 10px;
- }
-}*/
+.footer {
+ display: flex;
+ background-color: black;
+ padding: 10px 30px;
+ color: white;
+ justify-content: space-between;
+ flex-wrap: wrap;
+ row-gap: 15px;
+}
+.footer h4 {
+ margin-bottom: 7px;
+ color: #878787;
+}
 
-/* Small devices (landscape phones, 576px and up) */
-/*@media (min-width: 576px) {
- .container {
-  max-width: 540px;
-  margin: 0 auto;
- }
-}*/
-/* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
-/*@media (min-width: 768px) {
- .container {
-  max-width: 720px;
-  margin: 0 auto;
- }
-}*/
+.footer h4 i {
+ color: #878787;
+}
 
-/* Large devices (desktops, 992px and up) */
-/*@media (min-width: 992px) {
- .container {
-  max-width: 960px;
-  margin: 0 auto;
- }
-}*/
-
-/* Extra large devices (large desktops, 1200px and up) */
-/*@media (min-width: 1200px) {
- .container {
-  max-width: 1140px;
-  margin: 0 auto;
- }
-}*/
-
-/* Extra extra large devices (extra large desktops, 1400px and up) */
-/*@media (min-width: 1400px) {
- .container {
-  max-width: 1320px;
-  margin: 0 auto;
- }
- .content {
-  margin: 0 15px 15px 15px;
-  padding: 10px;
- }
- .favorite-icon {
-  top: 5px;
-  right: 5px;
- }
- .productdetail-page {
-  display: flex;
- }
-}*/
+.footer i {
+ color: white;
+}
+.footer p {
+ color: white;
+ font-size: 12px;
+ font-weight: 300;
+ margin-bottom: 3px;
+}
 
 /* Small devices (portrait phones, 320px and up) */
 @media (min-width: 360px) {
@@ -406,6 +342,9 @@ button {
  }
  .product .product-title {
   margin-top: 5px;
+ }
+ .content {
+  margin: 0 10px 10px 10px;
  }
 }
 
