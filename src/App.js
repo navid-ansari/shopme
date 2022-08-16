@@ -1,7 +1,7 @@
 import "./App.css";
 
 // router
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 // components
 import Header from "./components/Header";
@@ -28,7 +28,7 @@ function App() {
       404 Not Found
      </Route>
     </Routes>
-    {/* <Footer /> */}
+    <Footer />
    </Router>
   </div>
  );
