@@ -11,7 +11,6 @@ import { toggleFavoriteProduct } from "../redux/actions/favoriteProductsAction";
 import { cartAction } from "../redux/actions/cartAction";
 
 const Product = (props) => {
- console.log(props);
  const {
   category,
   description,
