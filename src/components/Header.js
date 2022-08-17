@@ -27,7 +27,7 @@ const Header = (props) => {
  };
 
  return (
-  <div className="header" id="header">
+  <div className="header" id="header" data-testid="header">
    <div className="logo">
     <Link className="logo" to="/">
      <i className="ri-shopping-bag-line ri-fw ri-2x brand-logo"></i>

@@ -11,6 +11,7 @@ import { toggleFavoriteProduct } from "../redux/actions/favoriteProductsAction";
 import { cartAction } from "../redux/actions/cartAction";
 
 const Product = (props) => {
+ console.log(props);
  const {
   category,
   description,
@@ -53,7 +54,7 @@ const Product = (props) => {
  };
 
  return (
-  <div className="content">
+  <div className="content" id="content" data-testid="content">
    {/* onClick={() => dispatch(toggleFavoriteProduct(props.product))} */}
    {/* <div
     className="favorite-icon"
@@ -63,17 +64,24 @@ const Product = (props) => {
    </div> */}
    <div className="favorite-icon">{getFavoriteIcon()}</div>
    <Link to={`/product/${id}`}>
-    <img src={image} style={{ height: "200px" }} alt="" />
-    <h3>{title}</h3>
-    <p>{description}</p>
-    <h6>
+    <img
+     src={image}
+     style={{ height: "200px" }}
+     alt=""
+     data-testid="product-image"
+    />
+    <h3 data-testid="product-title">{title}</h3>
+    <p data-testid="product-description">{description}</p>
+    <h6 data-testid="product-price">
      <span>&#x20b9;</span>
      {price}
     </h6>
    </Link>
    <button
     className={isAddedToCart ? "remove-from-cart" : "add-to-cart"}
+    data-testid="add-to-cart-btn"
     onClick={() => props.toggleCart(props.product)}
+    //onClick={() => toggleCart(props.product)}
    >
     {getButtonText()}
    </button>

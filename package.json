@@ -16,6 +16,11 @@
   "redux-mock-store": "^1.5.4",
   "web-vitals": "^2.1.4"
  },
+ "jest": {
+  "watchPathIgnorePatterns": [
+   "src/__tests__/utils"
+  ]
+ },
  "scripts": {
   "start": "react-scripts start",
   "build": "react-scripts build",
