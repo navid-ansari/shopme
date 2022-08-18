@@ -31,6 +31,7 @@ const Product = (props) => {
    return (
     <i
      className="ri-heart-fill ri-fw ri-2x"
+     data-testid="toggle-favorite"
      onClick={() => props.toggleFavorite(props.product)}
     ></i>
    );
@@ -38,6 +39,7 @@ const Product = (props) => {
    return (
     <i
      className="ri-heart-line ri-fw ri-2x"
+     data-testid="toggle-favorite"
      onClick={() => props.toggleFavorite(props.product)}
     ></i>
    );
