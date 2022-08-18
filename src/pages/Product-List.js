@@ -21,7 +21,9 @@ const ProductList = () => {
  return (
   <div className="productlist-page">
    <div className="container">
-    <div className="gallery">{productsElem}</div>
+    <div className="gallery" data-testid="gallery">
+     {productsElem}
+    </div>
    </div>
   </div>
  );

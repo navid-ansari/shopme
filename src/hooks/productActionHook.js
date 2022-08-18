@@ -54,27 +54,25 @@ const useProductActionHook = () => {
  };
 
  useEffect(() => {
-  if (products.length === 0) {
-   const getProducts = async () => {
-    const url = "https://fakestoreapi.com/products";
-    const { data } = await axios.get(url).catch((error) => {
-     console.log(error);
-    });
+  //if (products.length === 0) {
+  const getProducts = async () => {
+   const url = "https://fakestoreapi.com/products";
+   const { data } = await axios.get(url);
 
-    // add 'isFavorite' & 'isAddedToCart' property
-    const modifiedProducts = data.map((product) => {
-     return {
-      ...product,
-      isAddedToCart: false,
-      isFavorite: false,
-     };
-    });
+   // add 'isFavorite' & 'isAddedToCart' property
+   const modifiedProducts = data.map((product) => {
+    return {
+     ...product,
+     isAddedToCart: false,
+     isFavorite: false,
+    };
+   });
 
-    // dispatch data to store
-    dispatch(setProducts(modifiedProducts));
-   };
-   getProducts();
-  }
+   // dispatch data to store
+   dispatch(setProducts(modifiedProducts));
+  };
+  getProducts();
+  //}
  }, []);
 
  return {
