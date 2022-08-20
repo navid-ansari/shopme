@@ -9,6 +9,8 @@ import { cartAction } from "../redux/actions/cartAction";
 // axios
 import axios from "axios";
 
+import { NotFoundError } from "../utils/error-handler";
+
 const useProductActionHook = () => {
  const products = useSelector((state) => state.allProducts.products);
  const dispatch = useDispatch();
@@ -53,13 +55,11 @@ const useProductActionHook = () => {
   }
  };
 
- useEffect(() => {
-  //if (products.length === 0) {
-  const getProducts = async () => {
-   const url = "https://fakestoreapi.com/products";
+ const getProducts = async () => {
+  const url = "https://fakestoreapi.com/products";
+  try {
    const { data } = await axios.get(url);
-
-   // add 'isFavorite' & 'isAddedToCart' property
+   //console.log(data);
    const modifiedProducts = data.map((product) => {
     return {
      ...product,
@@ -70,9 +70,23 @@ const useProductActionHook = () => {
 
    // dispatch data to store
    dispatch(setProducts(modifiedProducts));
-  };
-  getProducts();
-  //}
+  } catch (error) {
+   console.log("inside catch");
+   throw new NotFoundError("failed to fetch product from api");
+  }
+ };
+
+ useEffect(() => {
+  console.log("Product length :" + products.length);
+  (async () => {
+   if (products.length === 0) {
+    //console.log("inside if");
+    const response = await getProducts();
+    //console.log(response);
+   } else {
+    console.log("inside else");
+   }
+  })();
  }, []);
 
  return {
