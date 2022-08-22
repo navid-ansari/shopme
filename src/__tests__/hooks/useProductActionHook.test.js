@@ -63,15 +63,8 @@ describe("Product action hook", () => {
    { wrapper }
   );
 
-  /*await waitFor(() => expect(axios.get).toBeCalledTimes(1));
-  const response = await waitFor(() => {
-   expect(axios.get).toBeCalledWith(url);
-  });*/
-
   await waitFor(() => expect(axios.get).toHaveBeenCalledWith(url));
   await waitFor(() => expect(axios.get).toHaveBeenCalledTimes(1));
-
-  //await waitFor(() => expect(response.length).toBe(3));
  });
 
  test("failed to fetch products from api: 404", async () => {
@@ -81,7 +74,7 @@ describe("Product action hook", () => {
     Promise.reject(new NotFoundError("failed to fetch product from api"))
    );*/
 
-  axios.get.mockRejectedValueOnce(
+  axios.get.mockRejectedValue(
    new NotFoundError("failed to fetch product from api")
   );
 
@@ -100,34 +93,23 @@ describe("Product action hook", () => {
    { wrapper }
   );
 
-  /*await waitFor(() => expect(axios.get).toHaveBeenCalledTimes(1));
-  await waitFor(() => expect(axios.get).toBeCalledWith(url));
-  await waitFor(() =>
-   expect(axios.get).rejects.toThrow(
-    new NotFoundError("failed to fetch product from api")
-   )
-  );
-  await waitFor(() =>
-   expect(axios.get).rejects.toThrowError("failed to fetch product from api")
-  );*/
   await waitFor(() => expect(axios.get).toBeCalledWith(url));
   await waitFor(() => expect(axios.get).toBeCalledTimes(1));
 
-  // not working
-  /*await waitFor(() =>
+  await waitFor(() =>
    expect(axios.get).rejects.toThrow(
     new NotFoundError("failed to fetch product from api")
    )
   );
   await waitFor(() =>
    expect(axios.get).rejects.toThrowError("failed to fetch product from api")
-  );*/
+  );
  });
 
  test("failed to fetch products from api - mockRejectedValue: 404", async () => {
   const mocked = jest.mocked;
   mocked(axios.get).mockRejectedValue(
-   new NotFoundError("failed to fetch product from api")
+   new Error("failed to fetch product from api")
   );
 
   const ReduxProvider = ({ children, reduxStore }) => (

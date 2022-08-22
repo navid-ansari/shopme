@@ -71,21 +71,18 @@ const useProductActionHook = () => {
 
    // dispatch data to store
    dispatch(setProducts(modifiedProducts));
+   return modifiedProducts;
   } catch (error) {
-   console.log("inside catch");
+   //console.log("inside catch");
    throw new NotFoundError("failed to fetch product from api");
   }
  };
 
  useEffect(() => {
-  console.log("Product length :" + products.length);
   (async () => {
    if (products.length === 0) {
-    //console.log("inside if");
     const response = await getProducts();
-    //console.log(response);
    } else {
-    console.log("inside else");
    }
   })();
  }, []);

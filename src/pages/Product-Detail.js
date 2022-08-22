@@ -3,9 +3,6 @@ import React, { useState, useEffect } from "react";
 // router
 import { useParams } from "react-router-dom";
 
-// axios
-import axios from "axios";
-
 // redux
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -14,26 +11,22 @@ import {
 } from "../redux/actions/productAction";
 
 // component
-import Stars from "../components/Stars";
-
-// component
 import Detail from "../components/Detail";
+
+import { get } from "../utils/rest-client";
 
 const ProductDetail = () => {
  const { productId } = useParams();
  const product = useSelector((state) => state.product);
  const dispatch = useDispatch();
 
- const { category, description, id, image, price, title, rating } = product;
- const { rate, count } = rating || {};
-
  useEffect(() => {
   const getProductDetail = async () => {
    const url = `https://fakestoreapi.com/products/${productId}`;
-   const { data: productDetail } = await axios.get(url).catch((error) => {
-    console.log(error);
-   });
-   dispatch(selectedProduct(productDetail));
+   try {
+    const { data } = await get({ url });
+    dispatch(selectedProduct(data));
+   } catch (error) {}
   };
   if (productId && productId !== "") {
    getProductDetail();
@@ -46,8 +39,10 @@ const ProductDetail = () => {
  }, [productId]);
 
  return (
-  <div className="detail-page">
-   <Detail product={product} />
+  <div className="detail-page" data-testid="detail-page">
+   <div className="container">
+    <Detail product={product} />
+   </div>
   </div>
  );
 };
