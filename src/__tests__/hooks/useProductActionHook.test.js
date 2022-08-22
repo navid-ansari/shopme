@@ -1,36 +1,24 @@
 import { renderHook, waitFor } from "@testing-library/react";
 import axios from "axios";
+import { Provider } from "react-redux";
+import createStore from "redux-mock-store";
 
 // mocks
-import MockedProducts from "../models/products";
+import MockedProducts from "../mocks/products";
+import useProductActionHook from "../../hooks/useProductActionHook";
 
-import useProductActionHook from "../../hooks/productActionHook";
-
-import { renderComponent } from "../utils/component-renderer";
-import { hookRenderer } from "../utils/hook-renderer";
-
-import { Provider } from "react-redux";
-import { mockStore } from "../../redux/store";
+//import { mockStore } from "../../redux/store";
 import { NotFoundError } from "../../utils/error-handler";
 
-import { createStore } from "redux";
-import { reducers } from "../../redux/reducers";
-import { resetStore } from "../../redux/store";
-import { useDispatch } from "react-redux";
-import { resetStoreAction } from "../../redux/actions/resetStoreAction";
+//import { createStore } from "redux";
+//import { reducers } from "../../redux/reducers";
 
-// 3
-//jest.mock("axios");
-
-// 4
-
-// 1
-//jest.mock("axios");
+import { mockedStore } from "../utils/reset-store";
 
 jest.mock("axios");
-//jest.mock("../../hooks/productActionHook");
 
 let mockedProducts = [];
+
 describe("Product action hook", () => {
  const url = "https://fakestoreapi.com/products";
  beforeAll(() => {});
@@ -38,9 +26,6 @@ describe("Product action hook", () => {
   mockedProducts = MockedProducts();
   jest.clearAllMocks();
   jest.resetAllMocks();
-  resetStore();
-  //useDispatch(resetStoreAction());
-  //resetStore();
   /*const renderWithRouter = (ui, { route = "/" } = {}) => {
    window.history.pushState({}, "Test page", route);
 
@@ -48,15 +33,10 @@ describe("Product action hook", () => {
   };
   renderWithRouter(<Product />);*/
  });
- afterEach(() => {
-  //mockedProducts = [];
-  //jest.clearAllMocks();
-  //jest.resetAllMocks();
- });
+ afterEach(() => {});
  afterAll(() => {});
 
  test("fetch products from api: 200", async () => {
-  //jest.clearAllMocks();
   const mAxiosResponse = {
    data: mockedProducts,
   };
@@ -70,11 +50,11 @@ describe("Product action hook", () => {
   axios.get.mockResolvedValueOnce(mAxiosResponse);
 
   const ReduxProvider = ({ children, reduxStore }) => (
-   <Provider store={reduxStore}>{children}</Provider>
+   <Provider store={mockedStore()}>{children}</Provider>
   );
 
   const wrapper = ({ children }) => (
-   <ReduxProvider reduxStore={mockStore}>{children}</ReduxProvider>
+   <ReduxProvider reduxStore={mockedStore()}>{children}</ReduxProvider>
   );
   renderHook(
    () => {
@@ -94,8 +74,7 @@ describe("Product action hook", () => {
   //await waitFor(() => expect(response.length).toBe(3));
  });
 
- test.skip("failed to fetch products from api: 404", async () => {
-  jest.clearAllMocks();
+ test("failed to fetch products from api: 404", async () => {
   /*jest
    .spyOn(axios, "get")
    .mockImplementation(() =>
@@ -103,15 +82,15 @@ describe("Product action hook", () => {
    );*/
 
   axios.get.mockRejectedValueOnce(
-   new Error("failed to fetch product from api")
+   new NotFoundError("failed to fetch product from api")
   );
 
   const ReduxProvider = ({ children, reduxStore }) => (
-   <Provider store={reduxStore}>{children}</Provider>
+   <Provider store={mockedStore()}>{children}</Provider>
   );
 
   const wrapper = ({ children }) => (
-   <ReduxProvider reduxStore={mockStore}>{children}</ReduxProvider>
+   <ReduxProvider reduxStore={mockedStore()}>{children}</ReduxProvider>
   );
 
   renderHook(
@@ -131,22 +110,32 @@ describe("Product action hook", () => {
   await waitFor(() =>
    expect(axios.get).rejects.toThrowError("failed to fetch product from api")
   );*/
-  await waitFor(() => expect(axios.get).toHaveBeenCalledWith(url));
-  await waitFor(() => expect(axios.get).toHaveBeenCalledTimes(1));
+  await waitFor(() => expect(axios.get).toBeCalledWith(url));
+  await waitFor(() => expect(axios.get).toBeCalledTimes(1));
+
+  // not working
+  /*await waitFor(() =>
+   expect(axios.get).rejects.toThrow(
+    new NotFoundError("failed to fetch product from api")
+   )
+  );
+  await waitFor(() =>
+   expect(axios.get).rejects.toThrowError("failed to fetch product from api")
+  );*/
  });
 
- test.skip("failed to fetch products from api - mockRejectedValue: 404", async () => {
+ test("failed to fetch products from api - mockRejectedValue: 404", async () => {
   const mocked = jest.mocked;
   mocked(axios.get).mockRejectedValue(
    new NotFoundError("failed to fetch product from api")
   );
 
   const ReduxProvider = ({ children, reduxStore }) => (
-   <Provider store={reduxStore}>{children}</Provider>
+   <Provider store={mockedStore()}>{children}</Provider>
   );
 
   const wrapper = ({ children }) => (
-   <ReduxProvider reduxStore={mockStore}>{children}</ReduxProvider>
+   <ReduxProvider reduxStore={mockedStore()}>{children}</ReduxProvider>
   );
 
   renderHook(
@@ -156,8 +145,8 @@ describe("Product action hook", () => {
    { wrapper }
   );
 
-  //await waitFor(() => expect(axios.get).toBeCalledTimes(1));
   await waitFor(() => expect(axios.get).toBeCalledWith(url));
+  await waitFor(() => expect(axios.get).toBeCalledTimes(1));
   await waitFor(() =>
    expect(axios.get).rejects.toThrow(
     new NotFoundError("failed to fetch product from api")

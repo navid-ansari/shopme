@@ -7,7 +7,7 @@ import ProductList from "../../pages/Product-List";
 import Product from "../../components/Product";
 
 // mocks
-import MockedProducts from "../models/products";
+import MockedProducts from "../mocks/products";
 
 /*const product = {
  id: 1,

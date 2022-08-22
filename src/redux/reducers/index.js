@@ -2,7 +2,7 @@ import { combineReducers } from "redux";
 
 import { ActionTypes } from "../constants/action-types";
 import { productReducer, selectedProductReducer } from "./productReducer";
-import { toggleFavoriteProductReducer } from "./favoriteProductReducer";
+import { toggleFavoriteReducer } from "./favoriteProductReducer";
 
 import { cartReducer } from "./cartReducer";
 
@@ -17,7 +17,7 @@ const appReducer = combineReducers({
  /* your app’s top-level reducers */
  allProducts: productReducer,
  product: selectedProductReducer,
- favorites: toggleFavoriteProductReducer,
+ favorites: toggleFavoriteReducer,
  cart: cartReducer,
 });
 

@@ -11,6 +11,8 @@ import axios from "axios";
 
 import { NotFoundError } from "../utils/error-handler";
 
+import { get } from "../utils/rest-client";
+
 const useProductActionHook = () => {
  const products = useSelector((state) => state.allProducts.products);
  const dispatch = useDispatch();
@@ -58,8 +60,7 @@ const useProductActionHook = () => {
  const getProducts = async () => {
   const url = "https://fakestoreapi.com/products";
   try {
-   const { data } = await axios.get(url);
-   //console.log(data);
+   const { data } = await get({ url });
    const modifiedProducts = data.map((product) => {
     return {
      ...product,

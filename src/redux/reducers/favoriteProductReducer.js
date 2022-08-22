@@ -13,7 +13,7 @@ const findItem = (favorites, payload) => {
  }
 };
 
-export const toggleFavoriteProductReducer = (state = [], { type, payload }) => {
+export const toggleFavoriteReducer = (state = [], { type, payload }) => {
  switch (type) {
   case ActionTypes.FAVOURITE_PRODUCTS:
    return state.length === 0
@@ -23,5 +23,3 @@ export const toggleFavoriteProductReducer = (state = [], { type, payload }) => {
    return state;
  }
 };
-
-export const toggleFavoriteReducer = (state = [], { type, payload }) => {};
