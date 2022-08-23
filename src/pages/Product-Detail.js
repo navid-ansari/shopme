@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 // router
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 
 // redux
 import { useSelector, useDispatch } from "react-redux";
@@ -26,7 +26,10 @@ const ProductDetail = () => {
    try {
     const { data } = await get({ url });
     dispatch(selectedProduct(data));
-   } catch (error) {}
+    return data;
+   } catch (error) {
+    throw new Error("failed to fetch product detail");
+   }
   };
   if (productId && productId !== "") {
    getProductDetail();

@@ -67,7 +67,7 @@ describe("Product action hook", () => {
   await waitFor(() => expect(axios.get).toHaveBeenCalledTimes(1));
  });
 
- test("failed to fetch products from api: 404", async () => {
+ test.skip("failed to fetch products from api: 404", async () => {
   /*jest
    .spyOn(axios, "get")
    .mockImplementation(() =>
@@ -106,7 +106,7 @@ describe("Product action hook", () => {
   );
  });
 
- test("failed to fetch products from api - mockRejectedValue: 404", async () => {
+ test.skip("failed to fetch products from api - mockRejectedValue: 404", async () => {
   const mocked = jest.mocked;
   mocked(axios.get).mockRejectedValue(
    new Error("failed to fetch product from api")

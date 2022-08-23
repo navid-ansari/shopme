@@ -62,7 +62,9 @@ const useProductActionHook = () => {
    const getProducts = async () => {
     const url = "https://fakestoreapi.com/products";
     try {
-     const { data } = await get({ url });
+     const { data } = await get({ url }).catch((error) => {
+      throw new NotFoundError("failed to fetch product from api");
+     });
      const modifiedProducts = data.map((product) => {
       return {
        ...product,
