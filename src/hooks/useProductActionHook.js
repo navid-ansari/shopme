@@ -57,34 +57,30 @@ const useProductActionHook = () => {
   }
  };
 
- const getProducts = async () => {
-  const url = "https://fakestoreapi.com/products";
-  try {
-   const { data } = await get({ url });
-   const modifiedProducts = data.map((product) => {
-    return {
-     ...product,
-     isAddedToCart: false,
-     isFavorite: false,
-    };
-   });
-
-   // dispatch data to store
-   dispatch(setProducts(modifiedProducts));
-   return modifiedProducts;
-  } catch (error) {
-   //console.log("inside catch");
-   throw new NotFoundError("failed to fetch product from api");
-  }
- };
-
  useEffect(() => {
-  (async () => {
-   if (products.length === 0) {
-    const response = await getProducts();
-   } else {
-   }
-  })();
+  if (products.length === 0) {
+   const getProducts = async () => {
+    const url = "https://fakestoreapi.com/products";
+    try {
+     const { data } = await get({ url });
+     const modifiedProducts = data.map((product) => {
+      return {
+       ...product,
+       isAddedToCart: false,
+       isFavorite: false,
+      };
+     });
+
+     // dispatch data to store
+     dispatch(setProducts(modifiedProducts));
+     return modifiedProducts;
+    } catch (error) {
+     //console.log("inside catch");
+     throw new NotFoundError("failed to fetch product from api");
+    }
+   };
+   getProducts();
+  }
  }, []);
 
  return {
