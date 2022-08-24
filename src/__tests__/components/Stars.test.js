@@ -18,7 +18,7 @@ describe("Stars component", () => {
  });
  afterEach(() => {});
  afterAll(() => {});
- test("Should render component", () => {
+ test("Should render component", async () => {
   renderComponent(
    <Router>
     <Stars />
@@ -27,7 +27,7 @@ describe("Stars component", () => {
   expect(screen.getByTestId("stars")).not.toBeNull();
  });
 
- test("should render stars", () => {
+ test("should render stars", async () => {
   const starsArray = [0, 1, 2, 3];
   const starsElem = starsArray.map((star) => <Star key={star} />);
   renderComponent(<Router>{starsElem}</Router>);
