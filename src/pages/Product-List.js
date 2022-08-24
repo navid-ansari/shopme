@@ -4,7 +4,7 @@ import React from "react";
 import Product from "../components/Product";
 
 // custom hook
-import useProductActionHook from "../hooks/productActionHook";
+import useProductActionHook from "../hooks/useProductActionHook";
 
 const ProductList = () => {
  const { products, toggleFavorite, toggleCart } = useProductActionHook();

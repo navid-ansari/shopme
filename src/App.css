@@ -262,6 +262,7 @@ button {
  color: #222f3e;
  font-weight: bold;
 }
+.detail-page,
 .favorites-page,
 .cart-page {
  margin-top: 80px;

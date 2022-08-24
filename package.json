@@ -3,9 +3,11 @@
  "version": "0.1.0",
  "private": true,
  "dependencies": {
-  "@testing-library/user-event": "^13.5.0",
+  "@testing-library/user-event": "^14.4.3",
   "axios": "^0.27.2",
   "axios-mock-adapter": "^1.21.2",
+  "cypress": "^10.6.0",
+  "jest-mock-axios": "^4.6.1",
   "react": "^18.2.0",
   "react-dom": "^18.2.0",
   "react-native": "0.69.3",
@@ -15,12 +17,13 @@
   "react-scripts": "5.0.1",
   "redux": "4.2.0",
   "redux-mock-store": "^1.5.4",
+  "redux-persist": "^6.0.0",
   "web-vitals": "^2.1.4"
  },
  "jest": {
   "watchPathIgnorePatterns": [
    "src/__tests__/utils",
-   "src/__tests__/models"
+   "src/__tests__/mocks"
   ]
  },
  "scripts": {

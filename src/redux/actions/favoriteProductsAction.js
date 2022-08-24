@@ -6,17 +6,3 @@ export const toggleFavoriteProduct = (products) => {
   payload: products,
  };
 };
-
-export const addSelectedFavoriteProduct = (product) => {
- return {
-  type: ActionTypes.ADD_SELECTED_FAVOURITE_PRODUCT,
-  payload: product,
- };
-};
-
-export const removeSelectedFavoriteProduct = (product) => {
- return {
-  type: ActionTypes.REMOVE_SELECTED_FAVOURITE_PRODUCT,
-  payload: product,
- };
-};

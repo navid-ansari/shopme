@@ -6,7 +6,7 @@ import { renderComponent } from "../utils/component-renderer";
 import Product from "../../components/Product";
 
 // mocks
-import MockedProduct from "../models/product";
+import MockedProduct from "../mocks/product";
 
 describe("Product component", () => {
  let mockedProduct = {};

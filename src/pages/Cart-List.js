@@ -14,7 +14,7 @@ const CartList = () => {
  ));
 
  return (
-  <div className="cart-page">
+  <div className="cart-page" data-testid="cart-page">
    <div className="container">{cartElem}</div>
   </div>
  );
