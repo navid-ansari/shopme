@@ -35,7 +35,7 @@ describe("Detail component", () => {
   expect(product).toHaveLength(1);
  });
 
- test("Check Detail component  values", async () => {
+ test("Check Detail component values", async () => {
   await renderComponent(
    <Router>
     <Detail product={mockedProduct} />

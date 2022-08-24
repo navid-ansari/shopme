@@ -23,7 +23,7 @@ describe("Product List page", () => {
  });
  afterEach(() => {});
  afterAll(() => {});
- test("Check if page is rendered", () => {
+ test("Check if Product List page is rendered", () => {
   renderComponent(
    <Router>
     <ProductList />

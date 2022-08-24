@@ -22,7 +22,11 @@ const Stars = (props) => {
 
  const starElem = starCount.map((star) => <Star key={star} />);
 
- return <>{starElem}</>;
+ return (
+  <div className="stars" data-testid="stars">
+   {starElem}
+  </div>
+ );
 };
 
 export default Stars;
