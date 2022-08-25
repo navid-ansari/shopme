@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import { toggleFavoriteProduct } from "../redux/actions/favoriteProductsAction";
 
 import { cartAction } from "../redux/actions/cartAction";
+import { useState } from "react";
 
 const Product = (props) => {
  const {
@@ -56,14 +57,9 @@ const Product = (props) => {
 
  return (
   <div className="content" id="content" data-testid="content">
-   {/* onClick={() => dispatch(toggleFavoriteProduct(props.product))} */}
-   {/* <div
-    className="favorite-icon"
-    onClick={() => props.toggleFavorite(props.product)}
-   >
-    <i className="ri-heart-line ri-fw ri-2x"></i>
-   </div> */}
-   <div className="favorite-icon">{getFavoriteIcon()}</div>
+   <div className="favorite-icon" data-testid="favorite-icon">
+    {getFavoriteIcon()}
+   </div>
    <Link to={`/product/${id}`}>
     <img
      src={image}
@@ -82,7 +78,6 @@ const Product = (props) => {
     className={isAddedToCart ? "remove-from-cart" : "add-to-cart"}
     data-testid="add-to-cart-btn"
     onClick={() => props.toggleCart(props.product)}
-    //onClick={() => toggleCart(props.product)}
    >
     {getButtonText()}
    </button>

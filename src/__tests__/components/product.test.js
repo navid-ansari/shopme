@@ -2,11 +2,17 @@ import { screen, fireEvent } from "@testing-library/react";
 import { MemoryRouter as Router } from "react-router-dom";
 
 import { renderComponent } from "../utils/component-renderer";
+import { reRenderComponent } from "../utils/component-renderer";
 
 import Product from "../../components/Product";
 
 // mocks
 import MockedProduct from "../mocks/product";
+
+import { Provider } from "react-redux";
+import { mockStore } from "../../redux/store";
+
+const mocked = jest.mocked;
 
 describe("Product component", () => {
  let mockedProduct = {};
@@ -31,7 +37,28 @@ describe("Product component", () => {
   expect(screen.getByTestId("content")).not.toBeNull();
  });
 
- test("should have product values", () => {
+ test("check product prop", () => {
+  let actualProduct = {};
+
+  const mockOnClick = (mockedProduct) => {
+   actualProduct = mockedProduct;
+  };
+
+  renderComponent(
+   <Router>
+    <Product product={mockedProduct} toggleCart={mockOnClick} />
+   </Router>
+  );
+
+  const button = screen.getByRole("button");
+  fireEvent.click(button);
+  expect(actualProduct).not.toBeNull();
+  expect(actualProduct).not.toBe({});
+  expect(actualProduct.title).toBe(mockedProduct.title);
+  expect(actualProduct).toEqual(mockedProduct);
+ });
+
+ test("check rendered product values", () => {
   renderComponent(
    <Router>
     <Product product={mockedProduct} />
@@ -69,68 +96,122 @@ describe("Product component", () => {
  test("add to cart button", () => {
   const mockOnClick = jest.fn();
 
-  renderComponent(
+  // before click
+  const { rerender } = renderComponent(
    <Router>
-    <Product product={mockedProduct} toggleCart={mockOnClick} />
+    <Product
+     product={mockedProduct}
+     toggleCart={mockOnClick}
+     toggleFavorite={mockOnClick}
+    />
    </Router>
   );
 
-  // button click and button text
   const addToCartBtn = screen.getByTestId("add-to-cart-btn");
-  fireEvent.click(addToCartBtn);
-  expect(mockOnClick).toHaveBeenCalledTimes(1);
   expect(addToCartBtn).toHaveTextContent("Add To Cart");
+
+  // after click
+  mockedProduct = {
+   ...MockedProduct(),
+   isAddedToCart: true,
+  };
+  const component = (
+   <Router>
+    <Product
+     product={mockedProduct}
+     toggleCart={mockOnClick}
+     toggleFavorite={mockOnClick}
+    />
+   </Router>
+  );
+
+  reRenderComponent({ component, rerender });
+
+  const addToCartBtnClick = screen.getByTestId("add-to-cart-btn");
+  fireEvent.click(addToCartBtnClick);
+  expect(mockOnClick).toHaveBeenCalledTimes(1);
+  expect(addToCartBtnClick).toHaveTextContent("Remove From Cart");
  });
 
  test("remove from cart button", () => {
   const mockOnClick = jest.fn();
 
   mockedProduct = MockedProduct({ isAddedToCart: true });
-  renderComponent(
+  // before click
+  const { rerender } = renderComponent(
    <Router>
     <Product product={mockedProduct} toggleCart={mockOnClick} />
    </Router>
   );
 
-  const addToCartBtn = screen.getByTestId("add-to-cart-btn");
-  fireEvent.click(addToCartBtn);
-  expect(mockOnClick).toHaveBeenCalledTimes(1);
-  expect(addToCartBtn).toHaveTextContent("Remove From Cart");
- });
+  const removeFromCartBtn = screen.getByTestId("add-to-cart-btn");
+  expect(removeFromCartBtn).toHaveTextContent("Remove From Cart");
 
- test("check product prop", () => {
-  let actualProduct = {};
-
-  const mockOnClick = (mockedProduct) => {
-   actualProduct = mockedProduct;
+  // after click
+  mockedProduct = {
+   ...MockedProduct(),
+   isAddedToCart: false,
   };
 
-  renderComponent(
+  const component = (
    <Router>
-    <Product product={mockedProduct} toggleCart={mockOnClick} />
+    <Product
+     product={mockedProduct}
+     toggleCart={mockOnClick}
+     toggleFavorite={mockOnClick}
+    />
    </Router>
   );
 
-  const button = screen.getByRole("button");
-  fireEvent.click(button);
-  expect(actualProduct).not.toBeNull();
-  expect(actualProduct).not.toBe({});
-  expect(actualProduct.title).toBe(mockedProduct.title);
-  expect(actualProduct).toEqual(mockedProduct);
+  reRenderComponent({ component, rerender });
+
+  const removeFromCartBtnClick = screen.getByTestId("add-to-cart-btn");
+  fireEvent.click(removeFromCartBtnClick);
+  expect(mockOnClick).toHaveBeenCalledTimes(1);
+  expect(removeFromCartBtnClick).toHaveTextContent("Add To Cart");
  });
 
- test("add to favorite button", () => {
+ test.skip("add to favorite button", () => {
   const mockOnClick = jest.fn();
 
-  renderComponent(
+  // before click
+  const { rerender } = renderComponent(
    <Router>
     <Product product={mockedProduct} toggleFavorite={mockOnClick} />
    </Router>
   );
 
   const toggleFavoriteBtn = screen.getByTestId("toggle-favorite");
-  fireEvent.click(toggleFavoriteBtn);
+  /** check heart line icon*/
+
+  // after click
+  mockedProduct = {
+   ...MockedProduct(),
+   isFavorite: true,
+  };
+
+  const component = (
+   <Router>
+    <Product
+     product={mockedProduct}
+     toggleCart={mockOnClick}
+     toggleFavorite={mockOnClick}
+    />
+   </Router>
+  );
+
+  const { container } = reRenderComponent({ component, rerender });
+  //console.log(screen.getByRole("i"));
+  const toggleFavoriteBtnClick = screen.getByTestId("add-to-cart-btn");
+  fireEvent.click(toggleFavoriteBtnClick);
   expect(mockOnClick).toHaveBeenCalledTimes(1);
+  /*const heartIcon = screen.getByTestId('favorite-icon').querySelector("#spanid")
+  expect(heartIcon).toHaveClass("ri-heart-fill");*/
+  //expect(container.getElementsByClassName("ri-heart-fill").length).toBe(1);
+  //expect(removeFromCartBtnClick).toHaveTextContent("Add To Cart");
+
+  /*fireEvent.click(toggleFavoriteBtn);
+  expect(mockOnClick).toHaveBeenCalledTimes(1);*/
  });
 
  test("remove from favorite button", () => {
@@ -150,3 +231,17 @@ describe("Product component", () => {
   expect(mockOnClick).toHaveBeenCalledTimes(1);
  });
 });
+
+/*rerender(
+   <Provider store={mockStore}>
+    {
+     <Router>
+      <Product
+       product={mockedProduct}
+       toggleCart={mockOnClick}
+       toggleFavorite={mockOnClick}
+      />
+     </Router>
+    }
+   </Provider>
+  );*/
