@@ -264,7 +264,8 @@ button {
 }
 .detail-page,
 .favorites-page,
-.cart-page {
+.cart-page,
+.notfound-page {
  margin-top: 80px;
 }
 .productdetail-page {

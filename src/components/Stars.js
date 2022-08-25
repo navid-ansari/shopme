@@ -7,14 +7,11 @@ const Stars = (props) => {
  const [starCount, setStarCount] = useState([]);
 
  const generateStars = async (rating) => {
-  //console.log(rating);
   const stars = Math.ceil(rating);
   const array = [];
   for (let i = 0; i < stars; i++) {
-   //console.log("loop: " + i);
    array.push(i);
   }
-  //console.log(array);
   return array;
  };
 

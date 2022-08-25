@@ -12,7 +12,7 @@ export const Detail = (props) => {
  return (
   <div className="product" data-testid="product">
    <div className="left-column">
-    <img src={image} alt="" />
+    <img src={image} alt="" data-testid="product-image" />
    </div>
    <div className="right-column">
     <h2 className="product-title" data-testid="product-title">
