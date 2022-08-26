@@ -13,7 +13,7 @@ import { NotFoundError } from "../../utils/error-handler";
 //import { createStore } from "redux";
 //import { reducers } from "../../redux/reducers";
 
-import { mockedStore } from "../utils/reset-store";
+import { mockedStore } from "../test-utils/reset-store";
 
 jest.mock("axios");
 

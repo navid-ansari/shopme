@@ -1,7 +1,7 @@
 import { render as rtlRender, screen, waitFor } from "@testing-library/react";
 import { MemoryRouter as Router } from "react-router-dom";
 
-import { renderComponent } from "../utils/component-renderer";
+import { renderComponent } from "../test-utils/component-renderer";
 
 import Star from "../../components/Star";
 

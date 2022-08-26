@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import Star from "./Star";
 
 const Stars = (props) => {
- console.log(props);
+ //console.log(props);
  const [starCount, setStarCount] = useState([]);
 
  const generateStars = async (rating) => {

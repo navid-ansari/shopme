@@ -38,6 +38,16 @@ export class NotFoundError extends Error {
  }
 }
 
+export class InternalServerError extends Error {
+ status;
+ message;
+ constructor(message) {
+  super(message);
+  this.status = 500;
+  this.message = message;
+ }
+}
+
 export class BadResponseError extends Error {
  status;
  message;

@@ -14,6 +14,8 @@ import { mockStore } from "../../redux/store";
 export const renderComponent = (component) =>
  rtlRender(<Provider store={mockStore}>{component}</Provider>);
 
+export const reRenderComponent = ({ component, rerender }) =>
+ rerender(<Provider store={mockStore}>{component}</Provider>);
 /*export const renderComponent = (
  component,
  {
