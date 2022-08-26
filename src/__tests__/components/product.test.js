@@ -1,8 +1,8 @@
 import { screen, fireEvent } from "@testing-library/react";
 import { MemoryRouter as Router } from "react-router-dom";
 
-import { renderComponent } from "../utils/component-renderer";
-import { reRenderComponent } from "../utils/component-renderer";
+import { renderComponent } from "../test-utils/component-renderer";
+import { reRenderComponent } from "../test-utils/component-renderer";
 
 import Product from "../../components/Product";
 

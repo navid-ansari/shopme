@@ -22,7 +22,7 @@
  },
  "jest": {
   "watchPathIgnorePatterns": [
-   "src/__tests__/utils",
+   "src/__tests__/test-utils",
    "src/__tests__/mocks"
   ]
  },

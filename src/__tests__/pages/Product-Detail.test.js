@@ -10,7 +10,7 @@ import {
  useParams,
 } from "react-router-dom";
 
-import { renderComponent } from "../utils/component-renderer";
+import { renderComponent } from "../test-utils/component-renderer";
 
 import ProductDetail from "../../pages/Product-Detail";
 import ProductList from "../../pages/Product-List";

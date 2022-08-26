@@ -23,13 +23,9 @@ const ProductDetail = () => {
  useEffect(() => {
   const getProductDetail = async () => {
    const url = `https://fakestoreapi.com/products/${productId}`;
-   try {
-    const { data } = await get({ url });
-    dispatch(selectedProduct(data));
-    return data;
-   } catch (error) {
-    throw new Error("failed to fetch product detail");
-   }
+   const { data } = await get({ url });
+   dispatch(selectedProduct(data));
+   return data;
   };
   if (productId && productId !== "") {
    getProductDetail();

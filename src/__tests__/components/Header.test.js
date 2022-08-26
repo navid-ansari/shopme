@@ -12,7 +12,7 @@ import { MemoryRouter as Router } from "react-router-dom";
 /*const renderComponent = (component) =>
  rtlRender(<Provider store={mockStore}>{component}</Provider>);*/
 
-import { renderComponent } from "../utils/component-renderer";
+import { renderComponent } from "../test-utils/component-renderer";
 
 describe("Header component", () => {
  test("Render brand name in header", () => {

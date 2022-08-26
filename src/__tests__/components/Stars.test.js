@@ -2,7 +2,7 @@ import React from "react";
 import { screen, fireEvent } from "@testing-library/react";
 import { MemoryRouter as Router } from "react-router-dom";
 
-import { renderComponent } from "../utils/component-renderer";
+import { renderComponent } from "../test-utils/component-renderer";
 
 import Stars from "../../components/Stars";
 import Star from "../../components/Star";
