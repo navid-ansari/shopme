@@ -9,10 +9,7 @@ import Product from "../../components/Product";
 // mocks
 import MockedProduct from "../mocks/product";
 
-import { Provider } from "react-redux";
-import { mockStore } from "../../redux/store";
-
-const mocked = jest.mocked;
+const mockOnClick = jest.fn();
 
 describe("Product component", () => {
  let mockedProduct = {};
@@ -94,8 +91,6 @@ describe("Product component", () => {
  });
 
  test("add to cart button", () => {
-  const mockOnClick = jest.fn();
-
   // before click
   const { rerender } = renderComponent(
    <Router>
@@ -134,8 +129,6 @@ describe("Product component", () => {
  });
 
  test("remove from cart button", () => {
-  const mockOnClick = jest.fn();
-
   mockedProduct = MockedProduct({ isAddedToCart: true });
   // before click
   const { rerender } = renderComponent(
@@ -171,9 +164,7 @@ describe("Product component", () => {
   expect(removeFromCartBtnClick).toHaveTextContent("Add To Cart");
  });
 
- test.skip("add to favorite button", () => {
-  const mockOnClick = jest.fn();
-
+ test("add to favorite button", () => {
   // before click
   const { rerender } = renderComponent(
    <Router>
@@ -181,8 +172,8 @@ describe("Product component", () => {
    </Router>
   );
 
-  const toggleFavoriteBtn = screen.getByTestId("toggle-favorite");
-  /** check heart line icon*/
+  const heartIconLine = screen.getByTestId("toggle-favorite-line");
+  expect(heartIconLine).toHaveClass("ri-heart-line");
 
   // after click
   mockedProduct = {
@@ -200,48 +191,51 @@ describe("Product component", () => {
    </Router>
   );
 
-  const { container } = reRenderComponent({ component, rerender });
-  //console.log(screen.getByRole("i"));
+  reRenderComponent({ component, rerender });
   const toggleFavoriteBtnClick = screen.getByTestId("add-to-cart-btn");
   fireEvent.click(toggleFavoriteBtnClick);
   expect(mockOnClick).toHaveBeenCalledTimes(1);
-  /*const heartIcon = screen.getByTestId('favorite-icon').querySelector("#spanid")
-  expect(heartIcon).toHaveClass("ri-heart-fill");*/
-  //expect(container.getElementsByClassName("ri-heart-fill").length).toBe(1);
-  //expect(removeFromCartBtnClick).toHaveTextContent("Add To Cart");
-
-  /*fireEvent.click(toggleFavoriteBtn);
-  expect(mockOnClick).toHaveBeenCalledTimes(1);*/
+  const heartIconFill = screen.getByTestId("toggle-favorite-fill");
+  expect(heartIconFill).toHaveClass("ri-heart-fill");
  });
 
  test("remove from favorite button", () => {
-  const mockOnClick = jest.fn();
+  mockedProduct = {
+   ...MockedProduct(),
+   isFavorite: true,
+  };
 
-  mockedProduct = MockedProduct({
-   isFavorite: false,
-  });
-  renderComponent(
+  // before click
+  const { rerender } = renderComponent(
    <Router>
     <Product product={mockedProduct} toggleFavorite={mockOnClick} />
    </Router>
   );
 
-  const toggleFavoriteBtn = screen.getByTestId("toggle-favorite");
-  fireEvent.click(toggleFavoriteBtn);
+  const heartIconFill = screen.getByTestId("toggle-favorite-fill");
+  expect(heartIconFill).toHaveClass("ri-heart-fill");
+
+  mockedProduct = {
+   ...MockedProduct(),
+   isFavorite: false,
+  };
+
+  // after click
+  const component = (
+   <Router>
+    <Product
+     product={mockedProduct}
+     toggleCart={mockOnClick}
+     toggleFavorite={mockOnClick}
+    />
+   </Router>
+  );
+
+  reRenderComponent({ component, rerender });
+  const toggleFavoriteBtnClick = screen.getByTestId("add-to-cart-btn");
+  fireEvent.click(toggleFavoriteBtnClick);
   expect(mockOnClick).toHaveBeenCalledTimes(1);
+  const heartIconLine = screen.getByTestId("toggle-favorite-line");
+  expect(heartIconLine).toHaveClass("ri-heart-line");
  });
 });
-
-/*rerender(
-   <Provider store={mockStore}>
-    {
-     <Router>
-      <Product
-       product={mockedProduct}
-       toggleCart={mockOnClick}
-       toggleFavorite={mockOnClick}
-      />
-     </Router>
-    }
-   </Provider>
-  );*/
