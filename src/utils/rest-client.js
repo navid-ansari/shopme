@@ -9,7 +9,6 @@ import {
 } from "./error-handler";
 
 export const get = async ({ url }) => {
- console.log(url);
  try {
   return await axios.get(url);
  } catch (error) {

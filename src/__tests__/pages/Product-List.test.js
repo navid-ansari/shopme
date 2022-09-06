@@ -14,12 +14,6 @@ describe("Product List page", () => {
  beforeAll(() => {});
  beforeEach(() => {
   mockedProducts = MockedProducts();
-  /*const renderWithRouter = (ui, { route = "/" } = {}) => {
-   window.history.pushState({}, "Test page", route);
-
-   return render(ui, { wrapper: BrowserRouter });
-  };
-  renderWithRouter(<Product />);*/
  });
  afterEach(() => {});
  afterAll(() => {});
