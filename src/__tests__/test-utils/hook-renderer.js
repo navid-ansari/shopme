@@ -1,7 +1,7 @@
-import { render as rtlRender, screen } from "@testing-library/react";
-import { Provider } from "react-redux";
+import React from 'react'
+import { Provider } from 'react-redux'
 
-import { mockStore } from "../../redux/store";
+import { mockStore } from '../../redux/store'
 
 /*export const hookRenderer = (hook) => {
  const ReduxProvider = ({ children, reduxStore }) => (
@@ -12,9 +12,9 @@ import { mockStore } from "../../redux/store";
  );
 };*/
 const ReduxProvider = ({ children, reduxStore }) => (
- <Provider store={reduxStore}>{children}</Provider>
-);
+  <Provider store={reduxStore}>{children}</Provider>
+)
 
 export const hookRenderer = ({ children }) => (
- <ReduxProvider reduxStore={mockStore}>{children}</ReduxProvider>
-);
+  <ReduxProvider reduxStore={mockStore}>{children}</ReduxProvider>
+)

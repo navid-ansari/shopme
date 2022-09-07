@@ -1,32 +1,32 @@
-import React from "react";
+import React from 'react'
 
 // component
-import Product from "../components/Product";
+import Product from '../components/Product'
 
 // custom hook
-import useProductActionHook from "../hooks/useProductActionHook";
+import useProductActionHook from '../hooks/useProductActionHook'
 
 const ProductList = () => {
- const { products, toggleFavorite, toggleCart } = useProductActionHook();
+  const { products, toggleFavorite, toggleCart } = useProductActionHook()
 
- const productsElem = products.map((product) => (
-  <Product
-   key={product.id}
-   product={product}
-   toggleFavorite={() => toggleFavorite(product)}
-   toggleCart={() => toggleCart(product)}
-  />
- ));
+  const productsElem = products.map(product => (
+    <Product
+      key={product.id}
+      product={product}
+      toggleFavorite={() => toggleFavorite(product)}
+      toggleCart={() => toggleCart(product)}
+    />
+  ))
 
- return (
-  <div className="productlist-page">
-   <div className="container">
-    <div className="gallery" data-testid="gallery">
-     {productsElem}
+  return (
+    <div className="productlist-page">
+      <div className="container">
+        <div className="gallery" data-testid="gallery">
+          {productsElem}
+        </div>
+      </div>
     </div>
-   </div>
-  </div>
- );
-};
+  )
+}
 
-export default ProductList;
+export default ProductList

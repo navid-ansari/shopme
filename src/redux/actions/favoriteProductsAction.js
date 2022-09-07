@@ -1,8 +1,8 @@
-import { ActionTypes } from "../constants/action-types";
+import { ActionTypes } from '../constants/action-types'
 
-export const toggleFavoriteProduct = (products) => {
- return {
-  type: ActionTypes.FAVOURITE_PRODUCTS,
-  payload: products,
- };
-};
+export const toggleFavoriteProduct = products => {
+  return {
+    type: ActionTypes.FAVOURITE_PRODUCTS,
+    payload: products
+  }
+}
