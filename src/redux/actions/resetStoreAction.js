@@ -1,7 +1,7 @@
-import { ActionTypes } from "../constants/action-types";
+import { ActionTypes } from '../constants/action-types'
 
 export const resetStoreAction = () => {
- return {
-  type: ActionTypes.RESET_STORE,
- };
-};
+  return {
+    type: ActionTypes.RESET_STORE
+  }
+}

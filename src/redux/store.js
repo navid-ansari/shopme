@@ -1,24 +1,22 @@
-import { createStore } from "redux";
+import { createStore } from 'redux'
 //import { reducers } from "./reducers";
-import { rootReducer } from "./reducers";
-import { persistReducer, persistStore } from "redux-persist";
-import { useDispatch } from "react-redux";
-import { resetStoreAction } from "./actions/resetStoreAction";
+import { rootReducer } from './reducers'
+import { resetStoreAction } from './actions/resetStoreAction'
 
 const store = createStore(
- rootReducer,
- {},
- window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
+  rootReducer,
+  {},
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+)
 
-export default store;
+export default store
 
-export const mockStore = createStore(rootReducer);
+export const mockStore = createStore(rootReducer)
 
 export const resetStore = async () => {
- // eslint-disable-next-line react-hooks/rules-of-hooks
- store.dispatch(resetStoreAction());
-};
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  store.dispatch(resetStoreAction())
+}
 
 /*export const persistor = persistStore(store);
 
