@@ -22,6 +22,9 @@
     "web-vitals": "^2.1.4"
   },
   "jest": {
+    "testMatch": [
+      "**/?(*.)+(spec|test).[tj]s?(x)"
+    ],
     "watchPathIgnorePatterns": [
       "src/__tests__/test-utils",
       "src/__tests__/mocks"
