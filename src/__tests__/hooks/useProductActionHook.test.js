@@ -26,12 +26,6 @@ describe("Product action hook", () => {
   mockedProducts = MockedProducts();
   jest.clearAllMocks();
   jest.resetAllMocks();
-  /*const renderWithRouter = (ui, { route = "/" } = {}) => {
-   window.history.pushState({}, "Test page", route);
-
-   return render(ui, { wrapper: BrowserRouter });
-  };
-  renderWithRouter(<Product />);*/
  });
  afterEach(() => {});
  afterAll(() => {});
@@ -40,13 +34,6 @@ describe("Product action hook", () => {
   const mAxiosResponse = {
    data: mockedProducts,
   };
-  //jest.spyOn(axios, "get").mockResolvedValueOnce(mAxiosResponse);
-  /*jest
-   .spyOn(axios, "get")
-   .mockImplementationOnce(() => Promise.resolve(mAxiosResponse));*/
-
-  /*const mocked = jest.mocked;
-  mocked(axios.get).mockResolvedValue(mAxiosResponse);*/
   axios.get.mockResolvedValueOnce(mAxiosResponse);
 
   const ReduxProvider = ({ children, reduxStore }) => (
@@ -67,13 +54,7 @@ describe("Product action hook", () => {
   await waitFor(() => expect(axios.get).toHaveBeenCalledTimes(1));
  });
 
- test("failed to fetch products from api: 404", async () => {
-  /*jest
-   .spyOn(axios, "get")
-   .mockImplementation(() =>
-    Promise.reject(new NotFoundError("failed to fetch product from api"))
-   );*/
-
+ test.skip("failed to fetch products from api: 404", async () => {
   axios.get.mockRejectedValue(
    new NotFoundError("failed to fetch product from api")
   );
@@ -106,7 +87,7 @@ describe("Product action hook", () => {
   );
  });
 
- test("failed to fetch products from api - mockRejectedValue: 404", async () => {
+ test.skip("failed to fetch products from api - mockRejectedValue: 404", async () => {
   const mocked = jest.mocked;
   mocked(axios.get).mockRejectedValue(
    new Error("failed to fetch product from api")
