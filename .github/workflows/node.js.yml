@@ -25,8 +25,14 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
+        env:
+          CI: false
       - run: npm ci
       # run unit test
       - run: npm test
       # run production build
       - run: CI=false npm run build -- --profile
+      # prod build local server
+      - run: npm install -g serve
+      # serve production build
+      - run: serve -s build
