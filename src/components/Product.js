@@ -28,14 +28,16 @@ const Product = props => {
         <i
           className="ri-heart-fill ri-fw ri-2x"
           data-testid="toggle-favorite-fill"
-          onClick={() => props.toggleFavorite(props.product)}></i>
+          onClick={() => props.toggleFavorite(props.product)}
+        ></i>
       )
     } else {
       return (
         <i
           className="ri-heart-line ri-fw ri-2x"
           data-testid="toggle-favorite-line"
-          onClick={() => props.toggleFavorite(props.product)}></i>
+          onClick={() => props.toggleFavorite(props.product)}
+        ></i>
       )
     }
   }
@@ -65,7 +67,8 @@ const Product = props => {
       <button
         className={isAddedToCart ? 'remove-from-cart' : 'add-to-cart'}
         data-testid="add-to-cart-btn"
-        onClick={() => props.toggleCart(props.product)}>
+        onClick={() => props.toggleCart(props.product)}
+      >
         {getButtonText()}
       </button>
     </div>
