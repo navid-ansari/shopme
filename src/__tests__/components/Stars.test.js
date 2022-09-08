@@ -7,24 +7,19 @@ import { renderComponent } from '../test-utils/component-renderer'
 import Stars from '../../components/Stars'
 import Star from '../../components/Star'
 
-// mocks
-import MockedProduct from '../mocks/product'
-
 describe('Stars component', () => {
-  let mockedProduct = {}
   beforeAll(() => {})
-  beforeEach(() => {
-    mockedProduct = MockedProduct()
-  })
+  beforeEach(() => {})
   afterEach(() => {})
   afterAll(() => {})
   test('Should render component', async () => {
+    const rating = 3.9
     renderComponent(
       <Router>
-        <Stars />
+        <Stars rating={rating} />
       </Router>
     )
-    expect(screen.getByTestId('stars')).not.toBeNull()
+    await expect(screen.getByTestId('stars')).not.toBeNull()
   })
 
   test('should render stars', async () => {
@@ -32,6 +27,6 @@ describe('Stars component', () => {
     const starsElem = starsArray.map(star => <Star key={star} />)
     renderComponent(<Router>{starsElem}</Router>)
     const stars = screen.queryAllByTestId('star')
-    expect(stars).toHaveLength(4)
+    await expect(stars).toHaveLength(4)
   })
 })
