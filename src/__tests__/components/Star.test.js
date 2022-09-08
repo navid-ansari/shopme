@@ -6,35 +6,29 @@ import { renderComponent } from '../test-utils/component-renderer'
 
 import Star from '../../components/Star'
 
-// mocks
-import mockedproduct from '../mocks/product'
-
 describe('Star component', () => {
-  let mockedProduct = {}
   beforeAll(() => {})
-  beforeEach(() => {
-    mockedProduct = mockedproduct()
-  })
+  beforeEach(() => {})
   afterEach(() => {})
   afterAll(() => {})
 
-  test('Check if Star component is rendered', () => {
+  test('Check if Star component is rendered', async () => {
     renderComponent(
       <Router>
         <Star />
       </Router>
     )
-    expect(screen.getByTestId('star')).not.toBeNull()
+    await expect(screen.getByTestId('star')).not.toBeNull()
   })
 
-  test('Check if Star icon is rendered', () => {
+  test('Check if Star icon is rendered', async () => {
     renderComponent(
       <Router>
         <Star />
       </Router>
     )
-    expect(screen.getByTestId('ri-star-fill')).not.toBeNull()
+    await expect(screen.getByTestId('ri-star-fill')).not.toBeNull()
     const star = screen.queryAllByTestId('ri-star-fill')
-    expect(star).toHaveLength(1)
+    await expect(star).toHaveLength(1)
   })
 })

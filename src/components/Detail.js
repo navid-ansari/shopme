@@ -29,9 +29,11 @@ export const Detail = props => {
           <span className="rating" data-testid="rating-title">
             Rating:
           </span>
-          <span className="rating-stars">
-            <Stars rating={rate} />
-          </span>
+          {rate && (
+            <span className="rating-stars">
+              <Stars rating={rate} />
+            </span>
+          )}
         </div>
         <div className="product-review">
           <span className="reviews" data-testid="reviews-title">

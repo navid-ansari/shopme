@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom'
 
 // redux
 import { useSelector, useDispatch } from 'react-redux'
-import { selectedProduct, clearSelectedProduct } from '../redux/actions/productAction'
+import { selectedProduct } from '../redux/actions/productAction'
 
 // component
 import Detail from '../components/Detail'
@@ -20,18 +20,19 @@ const ProductDetail = () => {
   useEffect(() => {
     const getProductDetail = async () => {
       const url = `https://fakestoreapi.com/products/${productId}`
-      const { data } = await get({ url })
-      dispatch(selectedProduct(data))
-      return data
+      const response = await get({ url })
+      console.log(response)
+      dispatch(selectedProduct(response.data))
+      return response
     }
     if (productId && productId !== '') {
       getProductDetail()
     }
 
     // clear product when component destroys
-    return () => {
+    /*return () => {
       dispatch(clearSelectedProduct())
-    }
+    }*/
   }, [productId])
 
   return (

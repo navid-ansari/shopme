@@ -6,7 +6,7 @@ const Stars = props => {
   //console.log(props);
   const [starCount, setStarCount] = useState([])
 
-  const generateStars = async rating => {
+  const generateStars = rating => {
     const stars = Math.ceil(rating)
     const array = []
     for (let i = 0; i < stars; i++) {
@@ -16,10 +16,10 @@ const Stars = props => {
   }
 
   useEffect(() => {
-    ;(async () => {
-      const totalStars = await generateStars(props.rating)
-      setStarCount(totalStars)
-    })()
+    //;(async () => {
+    const totalStars = generateStars(props.rating)
+    setStarCount([...totalStars])
+    //})()
   }, [props.rating])
 
   const starElem = starCount.map(star => <Star key={star} />)
