@@ -41,7 +41,7 @@
     "lint:check": "eslint .",
     "lint:fix": "eslint --fix .",
     "eject": "react-scripts eject",
-    "heroku-postbuild": "npm run build"
+    "heroku-postbuild": "CI='' npm run build"
   },
   "eslintConfig": {
     "extends": [
