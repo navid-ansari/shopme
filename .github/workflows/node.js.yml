@@ -26,7 +26,11 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
       - run: npm ci
-      # run unit test
+      # check code formatting - prettier
+      - run: npm run format:check
+      # check code syntax - lint(ignore warning)
+      - run: npm run lint:check
+      # run unit test - jest and rtl
       - run: npm test
       # run production build
       - run: CI=false npm run build -- --profile
