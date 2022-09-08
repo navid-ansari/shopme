@@ -26,13 +26,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
       - run: npm ci
-      # run prettier
-      - run: npm run format:check
-      # run eslint
-      - run: npm run lint:check
       # run unit test
       - run: npm test
       # run production build
       - run: npm run build -- --profile
-      # prod build local server
-      - run: npm install -g serve
